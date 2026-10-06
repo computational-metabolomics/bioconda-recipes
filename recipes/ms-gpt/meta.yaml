@@ -7,7 +7,6 @@ package:
   version: {{ version }}
 
 source:
-  # Upstream has no tagged release yet; pin the commit that declares version 1.0.0.
   url: https://github.com/VIKI623/MS-GPT/archive/{{ commit }}.tar.gz
   sha256: fbfab880ed9ab97313356f4f3470569dabf897b0b63bd5c2e5ff1d0904038026
 
@@ -24,15 +23,11 @@ requirements:
     - pip
     - setuptools >=64
     - wheel
-  # Lower bounds are the oldest conda-forge versions the pipeline was verified
-  # with; upper bounds stop at the next major release.
   run:
     - python >=3.10
     - pytorch >=2.2.0,<3
-    # safe-mol 0.1.x imports transformers.utils.auto_docstring (transformers >=4.52)
     - transformers >=4.52.0,<5.0.0
     - peft >=0.10.0,<1
-    # safe-mol 0.2 requires transformers 5
     - safe-mol >=0.1.13,<0.2
     - datamol
     - datasets >=2.18.0
@@ -43,7 +38,6 @@ requirements:
     - omegaconf >=2.3.0,<3
     - tqdm
     - matplotlib-base >=3.7.0
-    # wandb <0.16.5 imports pkg_resources, which current setuptools no longer ships
     - wandb >=0.16.5
 
 test:
